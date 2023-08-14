@@ -1,0 +1,6 @@
+name: SunLightElevator
+main: org.sunlightdev.ElevatorPlugin
+version: 1.0
+api-version: 1.16
+author: NightDev701
+commands:

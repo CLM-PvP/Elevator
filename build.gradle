@@ -2,18 +2,59 @@ plugins {
     id 'java'
 }
 
-group = 'de.sunlight'
-version = '1.0-SNAPSHOT'
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+group 'org.sunlightdev'
 
 repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(16)
+    }
+}
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation files('API/spigot-1.16.5.jar')
+    implementation files('API/EssentialsX.jar')
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    //from(zipTree("API/json.jar"))
+    from {
+        subprojects.collect { it.sourceSets.main.output }
+    }
+    manifest(({
+        attributes 'Build-Count': getBuildCount()
+    } as Closure<?>))
+    from(files("build-count.properties"))
+    from(files("hash.txt"))
+
 }
 
 test {
     useJUnitPlatform()
+}
+
+def getBuildCount() {
+    def buildCount = 0
+
+    if (file('build-count.properties').exists()) {
+        def properties = new Properties()
+        file('build-count.properties').withInputStream { properties.load(it) }
+        buildCount = properties.getProperty('count')?.toInteger() ?: 0
+    }
+
+    buildCount++
+
+    def properties = new Properties()
+    properties.setProperty('count', buildCount.toString())
+    file('build-count.properties').withOutputStream { properties.store(it, null) }
+
+    buildCount
 }
