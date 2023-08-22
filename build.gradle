@@ -7,6 +7,7 @@ compileJava {
 }
 
 group 'org.sunlightdev'
+version getBuildCount()
 
 repositories {
     mavenCentral()
@@ -29,9 +30,6 @@ jar {
     from {
         subprojects.collect { it.sourceSets.main.output }
     }
-    manifest(({
-        attributes 'Build-Count': getBuildCount()
-    } as Closure<?>))
     from(files("build-count.properties"))
     from(files("hash.txt"))
 

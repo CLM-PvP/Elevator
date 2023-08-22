@@ -11,6 +11,7 @@ https://github.com/NightDev701
 */
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.sunlightdev.listener.TeleportListener;
 
 public class ElevatorPlugin extends JavaPlugin {
 
@@ -19,6 +20,7 @@ public class ElevatorPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        getServer().getPluginManager().registerEvents(new TeleportListener(), this);
     }
 
     public static ElevatorPlugin getPlugin() {
