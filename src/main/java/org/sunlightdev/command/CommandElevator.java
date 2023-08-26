@@ -29,8 +29,8 @@ public class CommandElevator implements CommandExecutor {
             double cost = ElevatorAPI.getCost();
 
             try {
-                if(Economy.hasEnough(String.valueOf(p.getUniqueId()), cost)){
-                    Economy.subtract(p.getUniqueId().toString(), cost);
+                if(Economy.hasEnough(p.getName(), cost)){
+                    Economy.subtract(p.getName(), cost);
                     p.getInventory().addItem(ElevatorAPI.getElevator());
                     p.sendMessage(ElevatorAPI.getPrefix()+"§aDu hast einen Aufzug erworben!");
                 } else {
