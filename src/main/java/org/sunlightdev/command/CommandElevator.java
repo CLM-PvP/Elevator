@@ -26,23 +26,23 @@ public class CommandElevator implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if(sender instanceof Player p){
-            double cost = ElevatorAPI.getCost();
+            //double cost = ElevatorAPI.getCost();
 
-            try {
+            /*try {
                 if(Economy.hasEnough(p.getName(), cost)){
-                    Economy.subtract(p.getName(), cost);
+                    Economy.subtract(p.getName(), cost);*/
                     p.getInventory().addItem(ElevatorAPI.getElevator());
                     p.sendMessage(ElevatorAPI.getPrefix()+"§aDu hast einen Aufzug erworben!");
-                } else {
+                /*} else {
                     p.sendMessage(ElevatorAPI.getPrefix()+"§cDu hast nicht genug Geld!");
-                }
-            } catch (UserDoesNotExistException | NoLoanPermittedException | MaxMoneyException e) {
+                }*/
+            /*} catch (UserDoesNotExistException | NoLoanPermittedException | MaxMoneyException e) {
                 Bukkit.getOnlinePlayers().forEach(staff -> {
                     if(staff.hasPermission("elevator.warning")) {
                         staff.sendMessage("§4§l(!) Error: "+e.getMessage());
                     }
                 });
-            }
+            }*/
 
         }
         return false;
