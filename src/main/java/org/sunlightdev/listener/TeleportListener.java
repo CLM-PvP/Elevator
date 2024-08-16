@@ -57,7 +57,7 @@ public class TeleportListener implements Listener {
         Player p = e.getPlayer();
 
         for (int y = p.getLocation().getBlockY() - 1; y > 0; y--) {
-            if (p.getWorld().getBlockAt(p.getLocation().getBlockX(), y, p.getLocation().getBlockZ()).getType() == Material.DAYLIGHT_DETECTOR) {
+            if (ElevatorAPI.isElevatorBlock(p, y)) {
                 e.setCancelled(true);
                 Location loc = new Location(p.getWorld(), p.getLocation().getX(), y + 0.6, p.getLocation().getZ(), p.getLocation().getYaw(), p.getLocation().getPitch());
                 if(ElevatorAPI.isElevator(loc)){
@@ -76,7 +76,7 @@ public class TeleportListener implements Listener {
 
         if (distance.isGoingUp()) {
             for (int y = p.getLocation().getBlockY() + 1; y < 256; y++) {
-                if (p.getWorld().getBlockAt(p.getLocation().getBlockX(), y, p.getLocation().getBlockZ()).getType() == Material.DAYLIGHT_DETECTOR) {
+                if (ElevatorAPI.isElevatorBlock(p, y)) {
                     e.setCancelled(true);
                     Location loc = new Location(p.getWorld(), p.getLocation().getX(), y + 0.6, p.getLocation().getZ(), p.getLocation().getYaw(), p.getLocation().getPitch());
                     if(ElevatorAPI.isElevator(loc)){

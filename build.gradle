@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'io.papermc.paperweight.userdev' version '1.7.2'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
 }
 
 compileJava {
@@ -11,17 +13,24 @@ version getBuildCount()
 
 repositories {
     mavenCentral()
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(16)
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
     }
 }
 
 dependencies {
-    implementation files('API/spigot-1.16.5.jar')
+    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
+    compileOnly "io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT"
     implementation files('API/EssentialsX.jar')
+}
+
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.Companion.MOJANG_PRODUCTION
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 jar {

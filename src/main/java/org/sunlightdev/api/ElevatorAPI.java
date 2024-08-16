@@ -15,6 +15,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -39,6 +40,10 @@ public class ElevatorAPI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isElevatorBlock(Player p, int y){
+        return p.getWorld().getBlockAt(p.getLocation().getBlockX(), y, p.getLocation().getBlockZ()).getType() == Material.SCULK_SENSOR;
     }
 
     public static String getPrefix(){
