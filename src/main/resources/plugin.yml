@@ -1,5 +1,7 @@
 name: SunLightElevator
 main: org.sunlightdev.ElevatorPlugin
+loadbefore:
+  - Essentials
 version: 2.0
 api-version: 1.21
 author: NightDev701
