@@ -95,10 +95,8 @@ public class ElevatorAPI {
     }
 
     public static ItemStack getElevator(){
-        ItemStack elevator = new ItemStack(Material.DAYLIGHT_DETECTOR);
+        ItemStack elevator = new ItemStack(Material.SCULK_SENSOR);
         ItemMeta meta = elevator.getItemMeta();
-
-        assert meta != null;
 
         meta.getPersistentDataContainer().set(NamespacedKey.minecraft("elevator"), PersistentDataType.BYTE, (byte) 1);
 

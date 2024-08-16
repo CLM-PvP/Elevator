@@ -34,7 +34,7 @@ public class TeleportListener implements Listener {
         ItemStack hand = p.getInventory().getItemInMainHand();
         Block b = e.getBlock();
 
-        if(hand.getType() == Material.DAYLIGHT_DETECTOR){
+        if(hand.getType() == Material.SCULK_SENSOR){
             if(hand.getItemMeta() != null){
                 if(ElevatorAPI.elevatorItem(hand.getItemMeta())){
                     ElevatorAPI.saveElevator(b.getLocation());
