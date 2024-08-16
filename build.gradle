@@ -26,7 +26,6 @@ dependencies {
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    //from(zipTree("API/json.jar"))
     from {
         subprojects.collect { it.sourceSets.main.output }
     }
